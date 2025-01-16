@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Upload Folder</title>
+    <link rel="stylesheet" href="style.css">
+
+     <!-- Firebase SDKs -->
+     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+
+</head>
+<body>
+
+    <!-- Login Form -->
+    
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Log In</button>
+            <button id="skipLogin">Skip Login</button>
+
+            <p id="error" class="error-message"></p>
+            <p>Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
+        </form>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div class="signup-container" id="signupContainer" style="display: none;">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p id="signupErrorMessage" class="error-message"></p>
+            <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </form>
+    </div>
+
+    <!-- Folder Upload Form (this will appear after clicking the login button) -->
+    <div class="upload-container" id="uploadContainer" style="display: none;">
+        <h2>Upload Folder</h2>
+        <form id="folderUploadForm">
+            <div class="form-group">
+                <label for="folderUpload">Select Folder</label>
+                <input type="file" id="folderUpload" name="folderUpload" webkitdirectory mozdirectory required>
+            </div>
+            <button type="submit">Upload</button>
+            <p id="uploadErrorMessage" class="error-message"></p>
+        </form>
+    </div>
+
+     <!-- Firebase Configuration -->
+     <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyASuxHn-orhZ4pERbYgKFuuf0FFXxt6AzY",
+            authDomain: "redirection-5eb8f.firebaseapp.com",
+            projectId: "redirection-5eb8f",
+            storageBucket: "redirection-5eb8f.appspot.com",
+            messagingSenderId: "943645279447",
+            appId: "1:943645279447:web:87f32fb119595f9ba2dc92"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        console.log("Firebase Initialized:", app);
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
