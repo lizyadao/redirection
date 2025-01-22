@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Upload Folder</title>
+    <title>Login & Manage Files</title>
     <link rel="stylesheet" href="style.css">
-
-     <!-- Firebase SDKs -->
-     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
-
 </head>
 <body>
-
     <!-- Login Form -->
-    
     <div class="login-container" id="loginContainer">
         <h2>Login</h2>
         <form id="loginForm">
@@ -28,13 +21,12 @@
             </div>
             <button type="submit">Log In</button>
             <button id="skipLogin">Skip Login</button>
-
             <p id="error" class="error-message"></p>
             <p>Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
         </form>
     </div>
 
-    <!-- Sign Up Form -->
+    <!-- Sign-Up Form -->
     <div class="signup-container" id="signupContainer" style="display: none;">
         <h2>Sign Up</h2>
         <form id="signupForm">
@@ -64,39 +56,30 @@
         </form>
     </div>
 
-    <!-- Folder Upload Form (this will appear after clicking the login button) -->
-    <div class="upload-container" id="uploadContainer" style="display: none;">
-        <h2>Upload Folder</h2>
+    <!-- Upload and Create Folder Section -->
+    <div id="uploadContainer" style="display: none;">
+        <h2>Manage Files</h2>
+        <button id="createFolderButton">Create Folder</button>
         <form id="folderUploadForm">
-            <div class="form-group">
-                <label for="folderUpload">Select Folder</label>
-                <input type="file" id="folderUpload" name="folderUpload" webkitdirectory mozdirectory required>
-            </div>
+            <input type="file" id="folderUpload" multiple>
             <button type="submit">Upload</button>
-            <p id="uploadErrorMessage" class="error-message"></p>
+            <p id="uploadErrorMessage" style="color: red; display: none;"></p>
         </form>
+        <div id="createdFoldersContainer" style="margin-top: 20px;">
+            <h3>Created Folders</h3>
+            <ul id="createdFoldersList"></ul>
+        </div>
+        <button id="viewFilesButton">View Uploaded Files</button>
     </div>
 
-     <!-- Firebase Configuration -->
-     <script type="module">
-        // Import the functions you need from the SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyASuxHn-orhZ4pERbYgKFuuf0FFXxt6AzY",
-            authDomain: "redirection-5eb8f.firebaseapp.com",
-            projectId: "redirection-5eb8f",
-            storageBucket: "redirection-5eb8f.appspot.com",
-            messagingSenderId: "943645279447",
-            appId: "1:943645279447:web:87f32fb119595f9ba2dc92"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        console.log("Firebase Initialized:", app);
-    </script>
+    <!-- View Files Section -->
+    <div id="viewFilesContainer" style="display: none;">
+        <h2>Uploaded Files</h2>
+        <ul id="fileList"></ul>
+        <button onclick="showUploadContainer()">Back to Upload</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+

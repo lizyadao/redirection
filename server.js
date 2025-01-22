@@ -1,16 +1,19 @@
-// Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getStorage, ref, uploadBytes, listAll, deleteObject, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-storage.js";
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyASuxHn-orhZ4pERbYgKFuuf0FFXxt6AzY",
-    authDomain: "redirection-5eb8f.firebaseapp.com",
-    projectId: "redirection-5eb8f",
-    storageBucket: "redirection-5eb8f.firebasestorage.app",
-    messagingSenderId: "943645279447",
-    appId: "1:943645279447:web:87f32fb119595f9ba2dc92"
-  };
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBEl5f6McfXqF1RKXuS1hdqH1LNAGcNkKk",
+  authDomain: "project-fb375.firebaseapp.com",
+  databaseURL: "https://project-fb375-default-rtdb.firebaseio.com",
+  projectId: "project-fb375",
+  storageBucket: "project-fb375.firebasestorage.app",
+  messagingSenderId: "427978000876",
+  appId: "1:427978000876:web:887080212f6b9166cb58c9"
+};  
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);

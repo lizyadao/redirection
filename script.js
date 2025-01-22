@@ -1,76 +1,70 @@
-// Switch between Login and Sign Up forms
-document.getElementById('showSignUp').addEventListener('click', function(event) {
+let uploadedFiles = [];
+
+// Switch between Login and Sign-Up forms
+document.getElementById('showSignUp').addEventListener('click', function (event) {
     event.preventDefault();
     document.getElementById('loginContainer').style.display = 'none';
     document.getElementById('signupContainer').style.display = 'block';
 });
 
-document.getElementById('showLogin').addEventListener('click', function(event) {
+document.getElementById('showLogin').addEventListener('click', function (event) {
     event.preventDefault();
     document.getElementById('signupContainer').style.display = 'none';
     document.getElementById('loginContainer').style.display = 'block';
 });
 
-// Handle Login form submission
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+// Handle Login Form Submission
+document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    
-    // Skip validation and directly move to the upload form
     document.getElementById('loginContainer').style.display = 'none';
     document.getElementById('uploadContainer').style.display = 'block';
 });
 
-
-// Handle Sign Up form submission
-document.getElementById('signupForm').addEventListener('submit', function(event) {
+// Handle File Upload
+document.getElementById('folderUploadForm').addEventListener('submit', function (event) {
     event.preventDefault();
-
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('signupPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const errorMessage = document.getElementById('signupErrorMessage');
-
-    if (password !== confirmPassword) {
-        errorMessage.textContent = "Passwords do not match.";
-        errorMessage.style.display = 'block';
-        return;
-    }
-
-    if (!firstName || !lastName || !email || !password) {
-        errorMessage.textContent = "All fields are required.";
-        errorMessage.style.display = 'block';
-        return;
-    }
-
-    alert("Sign Up successful!");
-    errorMessage.style.display = 'none';
-    // Redirect or perform further actions here
-});
-
-// Handle Folder Upload form submission
-document.getElementById('folderUploadForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const folderInput = document.getElementById('folderUpload');
-    const files = folderInput.files;
+    const files = document.getElementById('folderUpload').files;
     const errorMessage = document.getElementById('uploadErrorMessage');
 
     if (files.length === 0) {
-        errorMessage.textContent = "Please select a folder to upload.";
+        errorMessage.textContent = "Please select files to upload.";
         errorMessage.style.display = 'block';
         return;
     }
 
     errorMessage.style.display = 'none';
-    alert("Folder uploaded successfully!");
-    // Here you can process the folder/files as needed (e.g., upload to a server)
+    for (let file of files) {
+        uploadedFiles.push(file.name);
+    }
+    alert("Files uploaded successfully!");
 });
 
+// Handle View Files Button
+document.getElementById('viewFilesButton').addEventListener('click', function () {
+    document.getElementById('uploadContainer').style.display = 'none';
+    document.getElementById('viewFilesContainer').style.display = 'block';
 
-//skip log in
-document.getElementById('skipLogin').addEventListener('click', function() {
-    document.getElementById('loginContainer').style.display = 'none';
+    const fileList = document.getElementById('fileList');
+    fileList.innerHTML = '';
+    if (uploadedFiles.length === 0) {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'No files uploaded yet.';
+        fileList.appendChild(listItem);
+    } else {
+        uploadedFiles.forEach(file => {
+            const listItem = document.createElement('li');
+            listItem.textContent = file;
+            fileList.appendChild(listItem);
+        });
+    }
+});
+
+// Back to Upload Section
+function showUploadContainer() {
+    document.getElementById('viewFilesContainer').style.display = 'none';
     document.getElementById('uploadContainer').style.display = 'block';
-});
+}
+
+
+
+
