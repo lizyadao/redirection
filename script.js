@@ -11,7 +11,7 @@ let activeFolder = null; // Currently selected folder
 
 // Initialize folder-specific upload container
 function initFolderSpecificUpload() {
-  folderSpecificUploadContainer.style.display = "none";
+  folderSpecificUploadContainer.style.display = "none"; // Start hidden
   folderSpecificUploadContainer.innerHTML = `
     <h3 id="activeFolderName"></h3>
     <form id="folderUploadForm">
@@ -25,14 +25,14 @@ function initFolderSpecificUpload() {
   // Add event listener for file uploads
   folderSpecificUploadContainer
     .querySelector("#folderUploadForm")
-    .addEventListener("submit", (e) => {
+   .addEventListener("submit", (e) => {
       e.preventDefault();
       uploadFilesToActiveFolder();
-    });
+   });
 
   // Initialize back button
   backButton.textContent = "Back to Folders";
-  backButton.style.display = "none";
+  backButton.style.display = "none"; // Start hidden
   backButton.addEventListener("click", showFolderList);
   folderSpecificUploadContainer.appendChild(backButton);
 }
@@ -81,9 +81,9 @@ function renderFolders() {
 // Show the upload section for a specific folder
 function showUploadSectionForFolder(folderName) {
   // Hide the main upload container and show the folder-specific upload container
-  uploadContainer.style.display = "none";
-  folderSpecificUploadContainer.style.display = "block";
-  backButton.style.display = "block";
+  uploadContainer.style.display = "none"; // Hide the main upload container
+  folderSpecificUploadContainer.style.display = "block"; // Show the folder-specific upload container
+  backButton.style.display = "block"; // Show the back button
   document.getElementById("activeFolderName").textContent = `Uploading to: ${folderName}`;
   renderUploadedFiles(folderName);
 }
@@ -143,8 +143,8 @@ function renderUploadedFiles(folderName) {
 // Show the folder list
 function showFolderList() {
   activeFolder = null;
-  folderSpecificUploadContainer.style.display = "none";
-  uploadContainer.style.display = "block";
+  folderSpecificUploadContainer.style.display = "none"; // Hide folder-specific upload container
+  uploadContainer.style.display = "block"; // Show the main upload container
 }
 
 // Simulate login success
@@ -163,4 +163,4 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
 initFolderSpecificUpload();
 
 // Hide the main upload container initially
-uploadContainer.style.display = "none";
+uploadContainer.style.display = "none"; // Hide the main upload container initially

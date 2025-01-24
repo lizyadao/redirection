@@ -1,56 +1,75 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
+    background-color: #f4f4f4;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-
-.login-container, .signup-container, .upload-container {
-    background: #0000ff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
+    padding: 30px; /* Add padding for better spacing */
 }
 
 h2 {
-    margin-bottom: 20px;
-    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px; /* Increase font size */
+}
+
+h3 {
+    margin-bottom: 15px;
+    font-size: 24px; /* Increase font size */
+}
+
+/* Container Styles */
+.login-container, .signup-container, #uploadContainer, #viewFilesContainer {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 400px; /* Increase width */
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    text-align: left;
-    width: 400px;
+    margin-bottom: 25px; /* Increased margin */
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
     font-weight: bold;
+    margin-bottom: 10px; /* Increased space */
+    font-size: 18px; /* Larger font size */
 }
 
 input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px; /* Increase font size */
+    margin-bottom: 10px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
     background-color: #4CAF50;
     color: white;
+    padding: 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; /* Larger font size */
+    margin-top: 15px;
 }
 
 button:hover {
@@ -59,20 +78,93 @@ button:hover {
 
 .error-message {
     color: red;
+    font-size: 14px; /* Increase error message font */
     margin-top: 10px;
-    font-size: 14px;
-    display: none;
 }
 
-p {
-    font-size: 14px;
-}
-
+/* Links */
 a {
     color: #4CAF50;
     text-decoration: none;
+    font-size: 16px;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Folder List Styles */
+#createdFoldersContainer {
+    margin-top: 30px;
+}
+
+#createdFoldersList {
+    list-style-type: none;
+}
+
+#createdFoldersList li {
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+    font-size: 18px; /* Larger font size */
+}
+
+#createdFoldersList li:hover {
+    background-color: #e2e2e2;
+}
+
+/* View Files Section */
+#fileList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#fileList li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 18px; /* Larger font size */
+}
+
+#fileList button {
+    margin-left: 15px;
+    background-color: #f44336;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px; /* Larger font size */
+}
+
+#fileList button:hover {
+    background-color: #e53935;
+}
+
+/* Button Styles */
+button#viewFilesButton {
+    background-color: #2196F3;
+    color: white;
+    margin-top: 30px;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+}
+
+button#viewFilesButton:hover {
+    background-color: #1976D2;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 40px;
+    }
+
+    .login-container, .signup-container, #uploadContainer, #viewFilesContainer {
+        width: 100%;
+    }
 }
