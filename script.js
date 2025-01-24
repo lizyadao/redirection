@@ -68,12 +68,16 @@ function renderFolders() {
   createdFoldersList.innerHTML = "";
   for (const folder in folders) {
     const li = document.createElement("li");
-    li.textContent = folder;
+
+    // Prepend folder icon (📁) to the folder name
+    li.textContent = "📁 " + folder;
+
     li.style.cursor = "pointer";
     li.addEventListener("click", () => {
       activeFolder = folder;
       showUploadSectionForFolder(folder);
     });
+
     createdFoldersList.appendChild(li);
   }
 }
