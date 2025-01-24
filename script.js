@@ -102,7 +102,8 @@ function uploadFilesToActiveFolder() {
   }
 
   for (const file of files) {
-    folders[activeFolder].push({ name: file.name, type: file.type });
+    // Store the file object in addition to metadata
+    folders[activeFolder].push({ name: file.name, type: file.type, fileObject: file });
   }
 
   alert(`Uploaded ${files.length} file(s) to folder "${activeFolder}".`);
@@ -124,7 +125,56 @@ function renderUploadedFiles(folderName) {
 
   folders[folderName].forEach((file, index) => {
     const li = document.createElement("li");
+
+    // Display file name
     li.textContent = `${file.name}`;
+    
+    // Add preview based on file type
+    const preview = document.createElement("div");
+    preview.style.marginTop = "5px";
+
+    if (file.type.startsWith("image/")) {
+      // Image preview
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file.fileObject); // Create a preview URL
+      img.style.width = "100px";
+      img.style.height = "auto";
+      img.style.border = "1px solid #ccc";
+      img.style.marginRight = "10px";
+      preview.appendChild(img);
+    } else if (file.type === "text/plain") {
+      // Text file preview
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const textPreview = document.createElement("p");
+        textPreview.textContent = e.target.result;
+        textPreview.style.fontSize = "12px";
+        textPreview.style.color = "#555";
+        textPreview.style.marginTop = "5px";
+        preview.appendChild(textPreview);
+      };
+      reader.readAsText(file.fileObject);
+    } else {
+      // Generic file icon
+      const fileIcon = document.createElement("span");
+      fileIcon.textContent = "📄";
+      fileIcon.style.fontSize = "20px";
+      fileIcon.style.marginRight = "10px";
+      preview.appendChild(fileIcon);
+    }
+
+    li.appendChild(preview);
+
+    // Add download link
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(file.fileObject); // Create a downloadable URL
+    downloadLink.download = file.name; // Set the download attribute to the file name
+    downloadLink.textContent = "Download";
+    downloadLink.style.marginLeft = "10px";
+    downloadLink.style.color = "#007BFF";
+    downloadLink.style.textDecoration = "underline";
+
+    li.appendChild(downloadLink);
 
     // Add delete button
     const deleteButton = document.createElement("button");
